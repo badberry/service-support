@@ -7,7 +7,7 @@
 封装了swagger配置，依赖springfox.swagger:2.2.2
 2. 使用说明  
 在application.properties/application.yaml里面添加:
-```xml
+```properties
 service.name:#服务名称
 service.desc:#服务说明
 service.creator:#服务创建人或者服务维护人，建议用邮箱
