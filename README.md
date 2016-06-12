@@ -60,7 +60,8 @@ public class XXXServiceApplication {}
 2.请求返回日志会记录:ip地址，请求方法，请求url,发生的时间  
 2. 使用说明  
 要单独使用访问日志的功能，需要在Spring-Boot的Application上加上ComponentScan注解
-<pre>```
+<pre>
+```
 @SpringBootApplication
 @EnableScheduling
 @ComponentScan(value = {"cn.cloudtop.strawberry.service.accesses","当前项目的命名空间"})
