@@ -10,7 +10,6 @@
 @ComponentScan(value = {"cn.cloudtop.strawberry.service","当前项目的命名空间"})
 public class XXXServiceApplication {}
 ```
-
 ### 接口文档自动生成
 1. 介绍  
 封装了swagger配置，依赖springfox.swagger:2.2.2
@@ -29,7 +28,6 @@ service.desc:#服务说明
 service.creator:#服务创建人或者服务维护人，建议用邮箱
 service.version:#服务版本号，建议简单版本(v1,v2,v3...)
 ```
-
 ### 统一错误处理
 1. 介绍  
 提供统一错误处理封装(UnitedErrorController)，包括
@@ -47,7 +45,6 @@ service.version:#服务版本号，建议简单版本(v1,v2,v3...)
 @ComponentScan(value = {"cn.cloudtop.strawberry.service.errors","当前项目的命名空间"})
 public class XXXServiceApplication {}
 ```
-
 ### 访问日志支持
 1. 介绍  
 实现SpringMvc的拦截器(RequestInfoInterceptor)来实现访问日志的生成,使用AccessLogConfig来实现拦截器的注册.
@@ -62,4 +59,3 @@ public class XXXServiceApplication {}
 @ComponentScan(value = {"cn.cloudtop.strawberry.service.accesses","当前项目的命名空间"})
 public class XXXServiceApplication {}
 ```
-
