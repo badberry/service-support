@@ -16,12 +16,14 @@ public class XXXServiceApplication {}
 封装了swagger配置，依赖springfox.swagger:2.2.2
 2. 使用说明  
 要单独使用接口文档自动生成的功能，需要在Spring-Boot的Application上加上ComponentScan注解
+<pre>
 ```java
 @SpringBootApplication
 @EnableScheduling
 @ComponentScan(value = {"cn.cloudtop.strawberry.service","当前项目的命名空间"})
 public class XXXServiceApplication {}
 ```
+</pre>
 在application.properties/application.yaml里面添加:  
 <pre>
 ```
