@@ -48,6 +48,7 @@ public class RegistryTask {
                 String serviceUrl = String.format("http://%s:%s", this.serverIp, this.servicePort);
                 LOGGER.debug("try to registry service");
                 client.put(registryKey, serviceUrl).ttl(60).send().get();
+                LOGGER.info("registry success!server[name:{},version:{},instanceId:{}] url is {}", serviceName, version, registryKey, serviceUrl);
             }
         } catch (Exception ex) {
             LOGGER.error("registry error!", ex);
