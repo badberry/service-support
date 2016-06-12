@@ -19,10 +19,9 @@ public class XXXServiceApplication {}
 ```java
 @SpringBootApplication
 @EnableScheduling
-@ComponentScan(value = {"cn.cloudtop.strawberry.service.docs","当前项目的命名空间"})
+@ComponentScan(value = {"cn.cloudtop.strawberry.service","当前项目的命名空间"})
 public class XXXServiceApplication {}
 ```
-
 在application.properties/application.yaml里面添加:  
 <pre>
 ```
