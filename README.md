@@ -17,7 +17,7 @@ public class XXXServiceApplication {}
 2. 使用说明  
 要单独使用接口文档自动生成的功能，需要在Spring-Boot的Application上加上ComponentScan注解
 <pre>
-```java
+```
 @SpringBootApplication
 @EnableScheduling
 @ComponentScan(value = {"cn.cloudtop.strawberry.service","当前项目的命名空间"})
@@ -33,7 +33,6 @@ service.creator:#服务创建人或者服务维护人，建议用邮箱
 service.version:#服务版本号，建议简单版本(v1,v2,v3...)
 ```
 </pre>
-
 ### 统一错误处理
 1. 介绍  
 提供统一错误处理封装(UnitedErrorController)，包括
@@ -45,13 +44,14 @@ service.version:#服务版本号，建议简单版本(v1,v2,v3...)
 * 业务错误：捕获RestException,从中取出errorCode,errorMessage返回错误信息.
 2. 使用说明  
 要单独使用统一错误处理的功能，需要在Spring-Boot的Application上加上ComponentScan注解
-```java
+<pre>
+```
 @SpringBootApplication
 @EnableScheduling
 @ComponentScan(value = {"cn.cloudtop.strawberry.service.errors","当前项目的命名空间"})
 public class XXXServiceApplication {}
 ```
-
+</pre>
 ### 访问日志支持
 1. 介绍  
 实现SpringMvc的拦截器(RequestInfoInterceptor)来实现访问日志的生成,使用AccessLogConfig来实现拦截器的注册.
@@ -60,10 +60,10 @@ public class XXXServiceApplication {}
 2.请求返回日志会记录:ip地址，请求方法，请求url,发生的时间  
 2. 使用说明  
 要单独使用访问日志的功能，需要在Spring-Boot的Application上加上ComponentScan注解
-```java
+<pre>```
 @SpringBootApplication
 @EnableScheduling
 @ComponentScan(value = {"cn.cloudtop.strawberry.service.accesses","当前项目的命名空间"})
 public class XXXServiceApplication {}
 ```
-
+</pre>
