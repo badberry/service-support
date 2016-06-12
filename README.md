@@ -1,6 +1,6 @@
 # service-support
 
-封装好一些微服务的基础功能
+封装好一些微服务的基础功能:接口文档自动生成，统一错误处理，访问日志支持,自动注册
 
 ### 使用说明
 需要使用基础功能，需要在Spring-Boot的Application上加上ComponentScan注解
@@ -41,7 +41,6 @@ service.version:#服务版本号，建议简单版本(v1,v2,v3...)
 要单独使用统一错误处理的功能，需要在Spring-Boot的Application上加上ComponentScan注解
 ```java
 @SpringBootApplication
-@EnableScheduling
 @ComponentScan(value = {"cn.cloudtop.strawberry.service.errors","当前项目的命名空间"})
 public class XXXServiceApplication {}
 ```
@@ -55,7 +54,18 @@ public class XXXServiceApplication {}
 要单独使用访问日志的功能，需要在Spring-Boot的Application上加上ComponentScan注解
 ```java
 @SpringBootApplication
-@EnableScheduling
 @ComponentScan(value = {"cn.cloudtop.strawberry.service.accesses","当前项目的命名空间"})
 public class XXXServiceApplication {}
 ```
+### 自动注册
+#### 介绍
+服务启动后，会开启一个定时任务，每隔60s会往服务注册服务器上注册自己的信息!
+#### 使用说明
+要单独使用服务注册功能，需要在Spring-Boot的Application上加上ComponentScan，EnableScheduling注解
+```java
+@SpringBootApplication
+@EnableScheduling
+@ComponentScan(value = {"cn.cloudtop.strawberry.service.registry","当前项目的命名空间"})
+public class XXXServiceApplication {}
+```
+
