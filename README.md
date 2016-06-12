@@ -36,7 +36,7 @@ service.version:#服务版本号，建议简单版本(v1,v2,v3...)
 * 验证错误: Valid_Error(100901)
 * 请求方法错误:Method_Not_Allowed(100902)
 * 发生未知异常错误:None_Process_Exception(100903)
-* 业务错误：捕获RestException,从中取出errorCode,errorMessage返回错误信息.
+* 业务错误：捕获RestException,从中取出errorCode,errorMessage返回错误信息
 #### 使用说明
 要单独使用统一错误处理的功能，需要在Spring-Boot的Application上加上ComponentScan注解
 ```java
