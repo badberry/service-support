@@ -68,4 +68,10 @@ public class XXXServiceApplication {}
 @ComponentScan(value = {"cn.cloudtop.strawberry.service.registry","当前项目的命名空间"})
 public class XXXServiceApplication {}
 ```
-
+还需要在application.properties/application.yaml里面添加:
+```java
+service.name://服务名称
+service.version://服务版本号，建议简单版本(v1,v2,v3...)
+registry.url://服务注册中心url
+```
+***还需要添加两个环境变量***:***host***---服务地址,***port***---服务端口号
