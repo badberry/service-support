@@ -22,13 +22,13 @@ public class RegistryTask {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(RegistryTask.class);
 
-    @Value("${service.name}")
+    @Value("${info.app.name}")
     private String serviceName;
-    @Value("${service.version}")
+    @Value("${info.app.version}")
     private String version;
-    @Value("${host}")
+    @Value("${HostIP}")
     private String serverIp;
-    @Value("${port}")
+    @Value("${ListenPort}")
     private String servicePort;
     @Value("${registry.url}")
     private String registryUrl;
@@ -36,18 +36,27 @@ public class RegistryTask {
     private boolean registryDirExists = false;
 
     private String instanceId = UUID.randomUUID().toString().replace("-", "");
+    private EtcdClient cachedClient;
 
-    @Scheduled(fixedRate = 60000)
+    private EtcdClient getClient() {
+        if (cachedClient != null) {
+            return cachedClient;
+        }
+        this.cachedClient = new EtcdClient(URI.create(registryUrl));
+        return cachedClient;
+    }
+
+    @Scheduled(fixedRate = 5000)
     public void registry() {
         try {
+            EtcdClient client = this.getClient();
             LOGGER.debug("registry start!");
-            EtcdClient client = new EtcdClient(URI.create(registryUrl));
             String registryDir = String.format("registry/%s/%s", this.serviceName, this.version);
             if (createDirIfNotExists(client, registryDir)) {
                 String registryKey = String.format("%s/%s", registryDir, instanceId);
                 String serviceUrl = String.format("http://%s:%s", this.serverIp, this.servicePort);
                 LOGGER.debug("try to registry service");
-                client.put(registryKey, serviceUrl).ttl(60).send().get();
+                client.put(registryKey, serviceUrl).ttl(5).send().get();
                 LOGGER.info("registry success!server[name:{},version:{},instanceId:{}] url is {}", serviceName, version, registryKey, serviceUrl);
             }
         } catch (Exception ex) {

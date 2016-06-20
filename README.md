@@ -7,6 +7,7 @@
 ```java
 @SpringBootApplication
 @EnableScheduling
+@EnableCaching
 @ComponentScan(value = {"cn.cloudtop.strawberry.service","当前项目的命名空间"})
 public class XXXServiceApplication {}
 ```
@@ -23,10 +24,10 @@ public class XXXServiceApplication {}
 ```
 在application.properties/application.yaml里面添加:  
 ```java
-service.name:#服务名称
-service.desc:#服务说明
-service.creator:#服务创建人或者服务维护人，建议用邮箱
-service.version:#服务版本号，建议简单版本(v1,v2,v3...)
+info.app.name:#服务名称
+info.app.description:#服务说明
+info.app.version:#服务版本号，建议简单版本(v1,v2,v3...)
+info.app.creator:#服务创建人或者服务维护人，建议用邮箱
 ```
 ### 统一错误处理
 #### 介绍
@@ -70,8 +71,32 @@ public class XXXServiceApplication {}
 ```
 还需要在application.properties/application.yaml里面添加:
 ```java
-service.name://服务名称
-service.version://服务版本号，建议简单版本(v1,v2,v3...)
+info.app.name:#服务名称
+info.app.version:#服务版本号，建议简单版本(v1,v2,v3...)
 registry.url://服务注册中心url
 ```
 ***还需要添加两个环境变量***:***host***---服务地址,***port***---服务端口号
+### 缓存支持
+#### 介绍
+简单封装Spring缓存,使之支持Reids缓存.使用json序列化反序列化缓存对象.
+#### 使用说明
+若要单独使用缓存功能，需要在Spring-Boot的Application上加上ComponentScan,EnableCaching注解
+```java
+@SpringBootApplication
+@EnableCaching
+@ComponentScan(value = {"cn.cloudtop.strawberry.service.caches","当前项目的命名空间"})
+public class XXXServiceApplication {}
+```
+还需要在application.properties/application.yaml中添加redis的配置:
+```properties
+spring.redis.host: //redis主机地址
+spring.redis.port: //redis监听端口号
+spring.redis.password: //redis登录密码
+spring.redis.database: //redis库
+spring.redis.timeout: //redis连接超时时间
+spring.redis.pool.*   //redis连接池配置
+```
+#### 使用缓存配置介绍
+主要用到Cacheable,CacheEvict,CachePut注解，Caching注解用来集合前面几个注解.
+##### Cacheable
+标记结果缓存，

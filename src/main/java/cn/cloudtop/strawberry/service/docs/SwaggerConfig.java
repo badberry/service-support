@@ -18,13 +18,13 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @Configuration
 public class SwaggerConfig {
 
-    @Value("${service.name}")
+    @Value("${info.app.name}")
     private String serviceName;
-    @Value("${service.desc}")
+    @Value("${info.app.description}")
     private String description;
-    @Value("${service.creator}")
+    @Value("${info.app.creator}")
     private String creator;
-    @Value("${service.version}")
+    @Value("${info.app.version}")
     private String version;
 
     @Bean
